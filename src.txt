@@ -1,0 +1,27 @@
+public class Solution {
+    public ListNode removeKthNode(ListNode head, int k) {
+        ListNode fast = head;
+        ListNode slow = head;
+
+        // Move fast pointer k steps ahead
+        for (int i = 0; i < k; i++) {
+            fast = fast.next;
+        }
+
+        // If fast is null, it means remove the head node
+        if (fast == null) {
+            return head.next;
+        }
+
+        // Move both pointers until fast reaches the last node
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        // Remove the kth node from end
+        slow.next = slow.next.next;
+
+        return head;
+    }
+}
